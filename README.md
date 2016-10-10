@@ -13,7 +13,7 @@ see: https://developer.atlassian.com/docs/developer-tools/working-in-an-ide/crea
                  - 'pi' reinstalls the plugin into the running product instance
 * atlas-help  -- prints description for all commands in the SDK
 
-
+* atlas-clean -- reset JIRA state to that in src/test/resources/generated-test-resources.zip
 
 
 Full documentation is always available at:
