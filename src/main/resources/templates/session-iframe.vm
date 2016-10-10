@@ -1,0 +1,42 @@
+
+<ul id="testfairy-issuedetails" class="property-list two-cols">
+    <li class="item">
+        <div class="wrap">
+            <strong class="name">Tester’s Email:</strong>
+            <a href="$baseUrl/issues/?jql=issue.property%5BtestfairySession%5D.testerEmail%20~%20'$testerEmail'">$testerEmail</a>
+        </div>
+    </li>
+    <li class="item item-right">
+        <div class="wrap">
+            <strong class="name">Device Model:</strong>
+            <a href="$baseUrl/issues/?jql=issue.property%5BtestfairySession%5D.deviceModel%20~%20'$deviceModel'">$deviceModel</a>
+        </div>
+    </li>
+    <li class="item">
+        <div class="wrap">
+            <strong class="name">OS Version:</strong>
+            <a href="$baseUrl/issues/?jql=issue.property%5BtestfairySession%5D.osVersion%20~%20'$osVersion'">$osVersion</a>
+        </div>
+    </li>
+    <li class="item item-right">
+        <div class="wrap">
+            <strong class="name">Platform:</strong>
+            <a href="$baseUrl/issues/?jql=issue.property%5BtestfairySession%5D.platform%20~%20'$platform'">$platform</a>
+        </div>
+    </li>
+</ul>
+
+<br>
+
+<script  type="text/javascript">
+    function receiveMessage(event) {
+        var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+//        if (origin !== "http://example.org:8080")
+//            return;
+        if(event.data.height) {
+            document.getElementById('testfairy-iframe').height = (event.data.height) + "px";
+        }
+    }
+    window.addEventListener("message", receiveMessage, false);
+</script>
+<iframe id="testfairy-iframe" src="$sessionUrl?iframe" frameborder="0" width="100%"></iframe>

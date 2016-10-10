@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+    <plugin-info>
+        <description>${project.description}</description>
+        <version>${project.version}</version>
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+        <param name="plugin-icon">images/pluginIcon.png</param>
+        <param name="plugin-logo">images/pluginLogo.png</param>
+    </plugin-info>
+    <!-- add our i18n resource -->
+    <resource type="i18n" name="i18n" location="testfairy-jira-plugin"/>
+    <!-- add our web resources -->
+    <web-resource key="testfairy-jira-plugin-resources" name="testfairy-jira-plugin Web Resources">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="testfairy-jira-plugin.css" location="/css/testfairy-jira-plugin.css"/>
+        <resource type="download" name="testfairy-jira-plugin.js" location="/js/testfairy-jira-plugin.js"/>
+        <resource type="download" name="images/" location="/images"/>
+        <context>testfairy-jira-plugin</context>
+    </web-resource>
+    <web-panel name="TestFairy Session Panel" i18n-name-key="testfairy-session-panel.name"
+               key="testfairy-session-panel" location="atl.jira.view.issue.left.context" weight="250">
+        <description key="testfairy-session-panel.description">Show TestFairy session for issues reported from/by
+            TestFairy
+        </description>
+        <context-provider class="com.testfairy.atlassian.plugins.web.contextproviders.ContextProvider"/>
+        <resource name="view" type="velocity" location="templates/session-iframe.vm"/>
+    </web-panel>
+
+    <index-document-configuration entity-key="IssueProperty" key="jira-issue-testfairySession-indexing">
+        <key property-key="testfairySession">
+            <extract path="issueId" type="number"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="sessionUrl" type="text"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="testerEmail" type="text"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="deviceModel" type="text"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="osVersion" type="text"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="platform" type="text"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="screenName" type="text"/>
+        </key>
+        <key property-key="testfairySession">
+            <extract path="exists" type="number"/>
+        </key>
+    </index-document-configuration>
+
+    <component-import key="applicationProperties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+    <component-import key="eventPublisher" interface="com.atlassian.event.api.EventPublisher"/>
+    <component-import key="issuePropertyService" interface="com.atlassian.jira.bc.issue.properties.IssuePropertyService"/>
+</atlassian-plugin>

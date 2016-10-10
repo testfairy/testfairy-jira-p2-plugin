@@ -1,0 +1,32 @@
+sudo: required
+dist: trusty
+
+language: java
+
+jdk:
+- oraclejdk8
+
+before_install:
+- sudo apt-get update
+- sudo add-apt-repository "deb http://sdkrepo.atlassian.com/debian/ stable contrib"
+- sudo cat < /etc/apt/sources.list
+- sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B07804338C015B73
+- sudo apt-get update
+- sudo sudo apt-get install atlassian-plugin-sdk
+
+install: true
+
+script:
+- atlas-package
+- mv target/testfairy-jira-plugin-*SNAPSHOT.jar target/testfairy-jira-plugin.jar
+
+deploy:
+  provider: releases
+  api_key:
+    secure: F09dLeVTXoSjEG3qUvzmnU00m7ZTFFik2hbzJqIpHNMLDvdE3pxMpOOyRrenz3R2mQQqD0zKx0SKW27cU/xMXpfERO4M4RteA4ReQnnG+t0Y6oFChBceomeMyb9noEemJbKT/AtD/G+KD+A8XDyDSKASUYBdgZr6fjOZWXZXoewb9hPPpBTSomfJjSRQ4s2PofSxx9syfX6jZrjPFS9kLd9rHS2I9sEmveIWqsHPQ5dNsCy2dqPdFspBAC6g7FgXhsR3L8sHK+fjpA/Y1DlROM/nv0GrRI7HhskarWeI4U67B3EQw2x/Ku67WBLO7LDJuHDb69kEslIajyugWUUKyr30CcQr0z/zFBW02/RNr004xVnpmeJKX9HxjhNti3vVCFYKYIgnLpIut+B2h6f2/i7Jx/IXYOEANR/zzrBk7B1cwGfooqpnPm+ppeHUUlT/SCTGnaZWG3f4fVRm+InAnza9AAMJdq5AHhTur9cn6mUQNTR3cO8xacr89p9xsJnoK1FQS5C+PU+iUx479DY57x7oBX6j2DrB61PEvsBKVEqO8f1WC83W4mLGtGEX2yelqhXPgxKoctAyIJmEic/4/1q3W/twJPNm9Yg84n+v8ZrVATHfOq+fcvD+kRwif0TluTGtRuAUpgUDT33Jd5zI9ssUYitUdhVAHhAOXs/5PTQ=
+  file: target/testfairy-jira-plugin.jar
+  on:
+    repo: tishma/testfairy-jira-sdk-plugin
+
+notifications:
+  email: true
