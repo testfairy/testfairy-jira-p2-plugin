@@ -1,4 +1,4 @@
-
+#if($testerEmail)
 <ul id="testfairy-issuedetails" class="property-list two-cols">
     <li class="item">
         <div class="wrap">
@@ -40,3 +40,4 @@
     window.addEventListener("message", receiveMessage, false);
 </script>
 <iframe id="testfairy-iframe" src="$sessionUrl?iframe" frameborder="0" width="100%"></iframe>
+#end

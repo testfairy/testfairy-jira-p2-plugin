@@ -31,19 +31,21 @@ public class ContextProvider extends AbstractJiraContextProvider {
 
         try {
             EntityPropertyService.PropertyResult testfairySessionProperty = issuePropertyService.getProperty(applicationUser, issue.getId(), "testfairySession");
-            String testfairySessionJson = testfairySessionProperty.getEntityProperty().getOrNull().getValue();
-            JSONObject jsonObject = new JSONObject(testfairySessionJson);
-            String baseUrl = ComponentAccessor.getApplicationProperties().getString(APKeys.JIRA_BASEURL);
+            if(testfairySessionProperty.getEntityProperty().getOrNull() != null) {
+                String testfairySessionJson = testfairySessionProperty.getEntityProperty().getOrNull().getValue();
+                JSONObject jsonObject = new JSONObject(testfairySessionJson);
+                String baseUrl = ComponentAccessor.getApplicationProperties().getString(APKeys.JIRA_BASEURL);
 
-            contextMap.put("user", applicationUser);
-            contextMap.put("issue", issue);
-            contextMap.put("helper", jiraHelper);
-            contextMap.put("baseUrl", baseUrl);
-            contextMap.put("testerEmail", jsonObject.getString("testerEmail"));
-            contextMap.put("osVersion", jsonObject.getString("osVersion"));
-            contextMap.put("platform", jsonObject.getString("platform"));
-            contextMap.put("deviceModel", jsonObject.getString("deviceModel"));
-            contextMap.put("sessionUrl", jsonObject.getString("sessionUrl"));
+                contextMap.put("user", applicationUser);
+                contextMap.put("issue", issue);
+                contextMap.put("helper", jiraHelper);
+                contextMap.put("baseUrl", baseUrl);
+                contextMap.put("testerEmail", jsonObject.getString("testerEmail"));
+                contextMap.put("osVersion", jsonObject.getString("osVersion"));
+                contextMap.put("platform", jsonObject.getString("platform"));
+                contextMap.put("deviceModel", jsonObject.getString("deviceModel"));
+                contextMap.put("sessionUrl", jsonObject.getString("sessionUrl"));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
