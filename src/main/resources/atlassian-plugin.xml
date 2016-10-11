@@ -20,6 +20,11 @@
     </web-resource>
     <web-panel name="TestFairy Session Panel" i18n-name-key="testfairy-session-panel.name"
                key="testfairy-session-panel" location="atl.jira.view.issue.left.context" weight="250">
+
+        <conditions type="and">
+            <condition class="com.testfairy.atlassian.plugins.webfragment.conditions.IssueHasTestFairySessionProperty">
+            </condition>
+        </conditions>
         <description key="testfairy-session-panel.description">Show TestFairy session for issues reported from/by
             TestFairy
         </description>
