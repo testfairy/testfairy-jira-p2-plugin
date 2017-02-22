@@ -13,7 +13,7 @@ before_install:
 install: true
 script:
 - atlas-package
-- mv target/testfairy-jira-p2-plugin-*.jar target/testfairy-jira-p2-plugin.jar
+- mv target/testfairy-jira-p2-plugin-*SERVER.jar target/testfairy-jira-p2-plugin.jar
 deploy:
   provider: releases
   api_key:
