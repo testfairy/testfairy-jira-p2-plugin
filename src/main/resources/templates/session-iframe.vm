@@ -39,5 +39,5 @@
     }
     window.addEventListener("message", receiveMessage, false);
 </script>
-<iframe id="testfairy-iframe" src="$sessionUrl?iframe" frameborder="0" width="100%"></iframe>
+<iframe id="testfairy-iframe" src="$sessionUrl?iframe&source=jira" frameborder="0" width="100%"></iframe>
 #end
