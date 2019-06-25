@@ -1,15 +1,15 @@
-sudo: required
-dist: trusty
+#sudo: required
+#dist: trusty
 language: java
 jdk:
 - oraclejdk8
 before_install:
 - sudo apt-get update
-- sudo add-apt-repository "deb http://sdkrepo.atlassian.com/debian/ stable contrib"
-- sudo cat < /etc/apt/sources.list
-- sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B07804338C015B73
+- sudo add-apt-repository "deb http://packages.atlassian.com/debian/atlassian-sdk-deb/ stable contrib"
+- wget https://packages.atlassian.com/api/gpg/key/public    
+- sudo apt-key add public   
 - sudo apt-get update
-- sudo sudo apt-get install atlassian-plugin-sdk
+- sudo apt-get install atlassian-plugin-sdk
 install: true
 script:
 - atlas-package
